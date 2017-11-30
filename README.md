@@ -43,3 +43,41 @@ CLOSE WINDOW($w)
 <img width="130" alt="2017-11-30 12 53 45" src="https://user-images.githubusercontent.com/10509075/33412258-9c50f16c-d5cd-11e7-903e-a85766382219.png">
 
 **ポイント**: 変数の場合，チェックボックスの初期状態（チェックされてない）がフォームの表示や印刷と同時に代入されてしまう。フィールドであれば問題ない。
+
+### 変数チェックボックスを表示または印刷するには
+
+変数をチェックボックスとして表示または印刷するためには，チェックボックス（ボタンの一種）の初期状態がデータソースに代入されることを防止しなければなりません。具体的には，チェックボックスのデータソース（式）を空にすることで，オブジェクトと変数を「暗示的に」関連付けしないことが必要です。
+
+もちろん，それだけではチェックボックスのデータソース設定が復元できません。ひとつのアイデアとして，現バージョンではオブジェクト名のサイズが``255``文字まで拡張されているので，ここにデータソース情報を含めることができます。
+
+* 図5. オブジェクト名にデータソース情報を含めた例
+
+<img width="261" alt="2017-11-30 13 13 46" src="https://user-images.githubusercontent.com/10509075/33412694-70f685d8-d5d0-11e7-9855-448dfa4e53de.png">
+
+この例では，``:``の後に続くのが変数名，となっています。フォームが表示または印刷された時点ではデータソースが未定義であり，後からデータソースとして変数を設定しているので，変数が「チェックされてない状態」に初期化されてしまうことを防ぐことができます。
+
+```
+If (Form event=On Load) | (Form event=On Printing Detail)
+	
+	FORM GET OBJECTS($names;$objects)
+	For ($i;1;Size of array($names))
+		$name:=$names{$i}
+		$object:=$objects{$i}
+		
+		ARRAY LONGINT($pos;0)
+		ARRAY LONGINT($len;0)
+		
+		If (Match regex("[^:]+:(.+)";$name;1;$pos;$len))
+			$variable:=Get pointer(Substring($name;$pos{1};$len{1}))
+			If (Not(Nil($object)))
+				If (Not(Nil($variable)))
+					$object->:=$variable->
+					OBJECT SET DATA SOURCE(*;$name;$variable)
+				End if 
+			End if 
+		End if 
+		
+	End for 
+	
+End if 
+```
