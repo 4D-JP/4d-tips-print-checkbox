@@ -85,5 +85,5 @@ End if
 
 * 図7. 変数チェックボックスの印刷（修正後）
 
-<img width="265" alt="2017-11-30 13 35 08" src="https://user-images.githubusercontent.com/10509075/33413186-6deb1720-d5d3-11e7-9fc4-3cb1b484c210.png">
+<img width="130" alt="2017-11-30 13 35 08" src="https://user-images.githubusercontent.com/10509075/33413186-6deb1720-d5d3-11e7-9fc4-3cb1b484c210.png">
 
