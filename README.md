@@ -36,4 +36,4 @@ CLOSE WINDOW($w)
 
 * 図4. フィールドチェックボックスの印刷
 
-<img width="270" alt="2017-11-30 12 42 43" src="https://user-images.githubusercontent.com/10509075/33411959-fcbcc5be-d5cb-11e7-9f16-9f7e21a9620d.png">
+<img width="135" alt="2017-11-30 12 42 43" src="https://user-images.githubusercontent.com/10509075/33411959-fcbcc5be-d5cb-11e7-9f16-9f7e21a9620d.png">
