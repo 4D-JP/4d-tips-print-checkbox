@@ -50,7 +50,7 @@ CLOSE WINDOW($w)
 
 * 図5. オブジェクト名にデータソース情報を含めた例
 
-<img width="261" alt="2017-11-30 13 13 46" src="https://user-images.githubusercontent.com/10509075/33412694-70f685d8-d5d0-11e7-9855-448dfa4e53de.png">
+<img width="515" alt="2017-11-30 13 34 19" src="https://user-images.githubusercontent.com/10509075/33413152-3199b5ce-d5d3-11e7-831d-77b3cf1b76af.png">
 
 この例では，``:``の後に続くのが変数名，となっています。フォームが表示または印刷された時点ではデータソースが未定義であり，後からデータソースとして変数を設定しているので，変数が「チェックされてない状態」に初期化されてしまうことを防ぐことができます。
 
@@ -69,7 +69,6 @@ If (Form event=On Load) | (Form event=On Printing Detail)
 			$variable:=Get pointer(Substring($name;$pos{1};$len{1}))
 			If (Not(Nil($object)))
 				If (Not(Nil($variable)))
-					$object->:=$variable->
 					OBJECT SET DATA SOURCE(*;$name;$variable)
 				End if 
 			End if 
@@ -82,10 +81,9 @@ End if
 
 * 図6. 変数チェックボックスの表示（修正後）
 
-<img width="176" alt="2017-11-30 13 22 43" src="https://user-images.githubusercontent.com/10509075/33412891-ac105c60-d5d1-11e7-9737-1fe9342f630f.png">
+<img width="176" alt="2017-11-30 13 35 01" src="https://user-images.githubusercontent.com/10509075/33413182-6589f718-d5d3-11e7-8262-babef789a602.png">
 
 * 図7. 変数チェックボックスの印刷（修正後）
 
-<img width="254" alt="2017-11-30 13 22 59" src="https://user-images.githubusercontent.com/10509075/33412939-ed2f016a-d5d1-11e7-9dfa-7f1afb9a5662.png">
-
+<img width="265" alt="2017-11-30 13 35 08" src="https://user-images.githubusercontent.com/10509075/33413186-6deb1720-d5d3-11e7-9fc4-3cb1b484c210.png">
 
